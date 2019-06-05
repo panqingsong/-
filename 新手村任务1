@@ -1,0 +1,29 @@
+#新手村任务1 将打造一个债券价格的计算，并尝试对其优化
+n_3=input("请输入债券期限：")
+n=int(n_3)
+pmt_3=input("请输入债券每期利息：")
+pmt=int(pmt_3)
+mark_3=input("请输入当前的市场利率<不用输%>:")
+mark=int(mark_3)
+count=1
+sum1=0
+sum2=0
+while count<n:
+    d=1+mark/100             #市场利率除以100
+    d_n=1/(d**count)           #计算折现因子
+    sum1=sum1+d_n*pmt        #计算累加值
+    sum2=sum2+d_n*pmt*count     #计算累加值*t
+    count=count+1
+else:
+    pr=sum1+d_n*100
+    print("折现因子：{:.3f}".format(d_n))
+    dusum=sum2+d_n*100*(count-1)
+    print("累计值：{:.3f}".format(dusum))
+    dd=dusum/100
+    md=dusum/pr
+    du=md/(1+mark/100)
+print("债券的价格={:.3f}".format(pr))
+print("债券的美元久期={:.3f}".format(dd))
+print("债券的麦考利久期={:.3f}".format(md))
+print("债券的修正久期={:.3f}".format(du))
+#可以尝试去编写计算凸性的程序
